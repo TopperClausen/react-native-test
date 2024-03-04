@@ -1,7 +1,11 @@
 import { GoogleSignin, GoogleSigninButton } from "@react-native-google-signin/google-signin"
-import auth from '@react-native-firebase/auth';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
-const GoogleLogin = () => {
+interface Props {
+  onSuccess: (credentials: FirebaseAuthTypes.UserCredential) => void
+}
+
+const GoogleLogin = (props: Props) => {
   GoogleSignin.configure({
     webClientId: "559869071425-7mghaq8muvf5o3052qrsb33k1bf1s4q8.apps.googleusercontent.com",
   });
@@ -10,7 +14,9 @@ const GoogleLogin = () => {
     await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
     const { idToken } = await GoogleSignin.signIn();
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    return auth().signInWithCredential(googleCredential);
+    const credentials = await auth().signInWithCredential(googleCredential);
+
+    props.onSuccess(credentials);
   }
 
   return (
