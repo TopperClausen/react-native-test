@@ -1,0 +1,18 @@
+{
+  "data" : [
+    {
+      "filename" : "launch_screen 1.webp",
+      "idiom" : "universal",
+      "universal-type-identifier" : "org.webmproject.webp"
+    },
+    {
+      "filename" : "pentia.png",
+      "idiom" : "universal",
+      "universal-type-identifier" : "public.png"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

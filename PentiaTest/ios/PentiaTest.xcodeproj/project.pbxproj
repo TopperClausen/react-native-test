@@ -11,11 +11,11 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		292537DE2B95CAE80016DC70 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 292537DD2B95CAE80016DC70 /* Launch Screen.storyboard */; };
 		298700B42B911D32003FB357 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 298700B32B911D32003FB357 /* GoogleService-Info.plist */; };
 		298700B52B911D32003FB357 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 298700B32B911D32003FB357 /* GoogleService-Info.plist */; };
 		4C91CBCD37A1F45003FE39C9 /* Pods_PentiaTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D30D44FDD83E98ADE1CE5CE /* Pods_PentiaTest.framework */; };
 		5E21384AEB522E10E8FAF9AA /* Pods_PentiaTest_PentiaTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F115FB09691EDC622E88BC /* Pods_PentiaTest_PentiaTestTests.framework */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,12 +38,12 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = PentiaTest/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = PentiaTest/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = PentiaTest/main.m; sourceTree = "<group>"; };
+		292537DD2B95CAE80016DC70 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "PentiaTest/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		298700B32B911D32003FB357 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-PentiaTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PentiaTest.debug.xcconfig"; path = "Target Support Files/Pods-PentiaTest/Pods-PentiaTest.debug.xcconfig"; sourceTree = "<group>"; };
 		41F115FB09691EDC622E88BC /* Pods_PentiaTest_PentiaTestTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PentiaTest_PentiaTestTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5709B34CF0A7D63546082F79 /* Pods-PentiaTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PentiaTest.release.xcconfig"; path = "Target Support Files/Pods-PentiaTest/Pods-PentiaTest.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-PentiaTest-PentiaTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PentiaTest-PentiaTestTests.debug.xcconfig"; path = "Target Support Files/Pods-PentiaTest-PentiaTestTests/Pods-PentiaTest-PentiaTestTests.debug.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = PentiaTest/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-PentiaTest-PentiaTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PentiaTest-PentiaTestTests.release.xcconfig"; path = "Target Support Files/Pods-PentiaTest-PentiaTestTests/Pods-PentiaTest-PentiaTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		9D30D44FDD83E98ADE1CE5CE /* Pods_PentiaTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PentiaTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -93,8 +93,8 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				292537DD2B95CAE80016DC70 /* Launch Screen.storyboard */,
 			);
 			name = PentiaTest;
 			sourceTree = "<group>";
@@ -247,7 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				292537DE2B95CAE80016DC70 /* Launch Screen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				298700B42B911D32003FB357 /* GoogleService-Info.plist in Resources */,
 			);

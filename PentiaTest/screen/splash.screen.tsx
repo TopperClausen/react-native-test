@@ -1,44 +1,35 @@
-import { Animated, Text, View } from "react-native";
-import { useEffect, useState } from "react";
-import BootSplash, { isVisible } from "react-native-bootsplash";
+import { useEffect } from "react";
+import { Animated, Image, StyleSheet, Text, View } from "react-native";
 
-type Props = {
-  onAnimationEnd: () => void;
-};
+interface Props {
+  onDone: () => void;
+}
 
 const SplashScreen = (props: Props) => {
-  const [opacity] = useState(() => new Animated.Value(1));
-
-  const { container, logo /*, brand */ } = BootSplash.useHideAnimation({
-    manifest: require("../assets/bootsplash_manifest.json"),
-
-    logo: require("../assets/bootsplash_logo.png"),
-    // darkLogo: require("../assets/bootsplash_dark_logo.png"),
-    // brand: require("../assets/bootsplash_brand.png"),
-    // darkBrand: require("../assets/bootsplash_dark_brand.png"),
-
-    statusBarTranslucent: true,
-    navigationBarTranslucent: false,
-
-    animate: () => {
-      // Perform animations and call onAnimationEnd
-      Animated.timing(opacity, {
-        useNativeDriver: true,
-        toValue: 0,
-        duration: 500,
-      }).start(() => {
-        props.onAnimationEnd();
-      });
-    },
-  });
+  useEffect(() => {
+    setTimeout(() => {
+      props.onDone();
+    }, 1000);
+  }, []);
   return (
-    <Animated.View>
-      <View>
-        <Text>Loading...</Text>
-      </View>
-      
-    </Animated.View>
+    <View style={style.container}>
+      <Image style={style.image} source={require('../assets/img/pentia.png')} />
+    </View>
   );
 };
+
+const style = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%'
+  },
+  image: {
+    width: 300,
+    height: 300,
+  }
+});
+
 
 export default SplashScreen;

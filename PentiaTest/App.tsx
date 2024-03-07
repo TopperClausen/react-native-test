@@ -17,27 +17,25 @@ import SplashScreen from './screen/splash.screen';
 
 
 function App(): React.JSX.Element {
-  const [visible, setVisible] = useState(true);
+  const [splashVisible, setSplashVisible] = useState(true);
   const Stack = createNativeStackNavigator();
 
   return (
-    <View>
-      <Provider store={store}>
+    <Provider store={store}>
+      {!splashVisible && 
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Home" component={HomeScreen} />
           </Stack.Navigator>
         </NavigationContainer>
-      </Provider>
-      {visible && (
+      }
+      {splashVisible && (
         <SplashScreen
-          onAnimationEnd={() => {
-            setVisible(false);
-          }}
+          onDone={() => setSplashVisible(false)}
         />
       )}
-    </View>
+    </Provider>
   );
 }
 
