@@ -11,7 +11,7 @@ const store = configureStore({
     }
   ),
   reducer: {
-    session: sessionStore,
+    session: sessionStore
   },
 })
 

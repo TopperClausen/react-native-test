@@ -4,15 +4,18 @@ import FacebookLogin from "../components/facebookLogin";
 import { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import { useDispatch } from "react-redux";
 import { setSession } from "../store/session.store";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, ParamListBase } from "@react-navigation/native";
 
-const LoginScreen = () => {
+interface Props {
+  navigation: any
+}
+
+const LoginScreen = (props: Props) => {
   const dispatch = useDispatch();
-  const navigation = useNavigation();
 
   const handleGoogleLogin = (credentials: FirebaseAuthTypes.UserCredential) => {
     dispatch(setSession(credentials));
-    navigation.navigate('Home');
+    props.navigation.navigate('Home');
   }
 
   return (
@@ -29,7 +32,7 @@ const style = StyleSheet.create({
     marginTop: 60,
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   text: {
     fontSize: 34,

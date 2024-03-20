@@ -2,9 +2,11 @@ import { StyleSheet, View, Text, Pressable } from "react-native"
 import { useDispatch } from "react-redux";
 import { clearSession } from "../store/session.store";
 import { useNavigation } from "@react-navigation/native";
+import { SvgUri } from "react-native-svg";
 
 interface Props {
   title: string,
+  svgUrl?: string,
   onBack?: () => void
 }
 
@@ -20,11 +22,18 @@ const Header = (props: Props) => {
   return (
     <View style={style.header}>
       <View>
-        {props.onBack && 
-          <Text style={style.clickableText}> Tilbage </Text>
+        {props.onBack &&
+          <Pressable style={style.signOut} onPress={props.onBack}>
+            <Text style={style.clickableText}> Tilbage </Text>
+          </Pressable>
         }
       </View>
-      <Text style={style.text}> { props.title } </Text>
+      <View style={{ flexDirection: 'row' }}>
+        <Text style={style.text}> { props.title } </Text>
+        {props.svgUrl &&
+          <SvgUri uri={props.svgUrl} width={20} height={20} style={{ marginTop: 10, marginLeft: 2 }} />
+        }
+      </View>
       <View>
         <Pressable style={style.signOut} onPress={signOut}>
           <Text style={style.clickableText}>Logout</Text>
@@ -52,7 +61,7 @@ const style = StyleSheet.create({
     fontWeight: 'bold'
   },
   signOut: {
-    marginTop: 10
+    marginTop: 12
   },
   clickableText: {
     fontSize: 16,
