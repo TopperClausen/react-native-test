@@ -1,13 +1,11 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useState } from "react";
 import Header from "../components/header";
-import { getChatCollection, subscribe } from "../client/chat.client";
+import { getChatCollection } from "../client/chat.client";
 import globalStyle from "../globalStyle";
 import { SvgUri } from "react-native-svg";
 import { ChatDocument } from "../client/chat.types";
 import { useSelector } from "react-redux";
-
-const _ = require('lodash');
 
 interface Props {
   navigation: any,
@@ -15,14 +13,17 @@ interface Props {
 
 const HomeScreen = (props: Props) => {
   const state = useSelector((state: any) => state);
-  const initialState: ChatDocument[] = [
-    {} as ChatDocument,
-    {} as ChatDocument,
-    {} as ChatDocument,
-  ];
-  const [chats, setChats] = useState<ChatDocument[]>(initialState);
+  const [chats, setChats] = useState<ChatDocument[]>([
+                                      {} as ChatDocument,
+                                      {} as ChatDocument,
+                                      {} as ChatDocument,
+                                    ]);
 
-  getChatCollection().then(result => setChats(result as ChatDocument[]));
+  const loadChats = async () => {
+    const result = await getChatCollection();
+    setChats(result as ChatDocument[])
+  }
+  loadChats();
 
   return (
     <View>
@@ -30,7 +31,7 @@ const HomeScreen = (props: Props) => {
       <Text style={{ fontSize: 16 }}> Hej { state.session.displayName } </Text>
       <Text> vælg et rum og begynd at chatte </Text>
       { chats.length > 0 &&
-        <Chats chats={chats} navigator={props.navigation} />
+        <Chats chats={chats} navigator={props.navigation} refresh={loadChats} />
       } 
       { chats.length == 0 && 
         <Text> Loading... </Text>
@@ -39,9 +40,16 @@ const HomeScreen = (props: Props) => {
   )
 }
 
-const Chats = (props: { chats: ChatDocument[], navigator: any }) => {
+const Chats = (props: { chats: ChatDocument[], navigator: any, refresh: () => void }) => {
+  const [refreshing, setRefreshing] = useState<boolean>(false);
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await props.refresh();
+    setRefreshing(false);
+  }
+
   return (
-    <View style={style.container}>
+    <ScrollView style={style.container} refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />} >
       <Text style={globalStyle.header2}> Rum </Text>
       {props.chats.map(chat => (
         <Pressable onPress={() => props.navigator.navigate('Chat', { chatTitle: chat.title })} style={{ flexDirection: 'row', paddingLeft: 6, paddingRight: 6 }}>
@@ -51,7 +59,7 @@ const Chats = (props: { chats: ChatDocument[], navigator: any }) => {
           </View>
         </Pressable>
       ))}
-    </View>
+    </ScrollView>
   )
 }
 

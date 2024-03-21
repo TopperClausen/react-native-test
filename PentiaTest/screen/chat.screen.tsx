@@ -24,7 +24,7 @@ interface Props {
 const ChatScreen = (props: Props) => {
   const { chatTitle } = props.route.params as any;
   const state = useSelector((state: RootState) => state);
-  const [chat, setChat] = useState<ChatDocument>({} as ChatDocument);
+  const [chat, setChat] = useState<ChatDocument | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   const scrollRef = useRef<ScrollView>(null);
@@ -38,7 +38,8 @@ const ChatScreen = (props: Props) => {
   }
 
   const onUpdate = (data: any) => {
-    console.log(chat)
+    if (chat === null && data?._data !== undefined) {
+    }
     if ((chat?.messages?.length || 0) != data._data.messages.length) {
       setChat(data._data);
     }
@@ -61,10 +62,10 @@ const ChatScreen = (props: Props) => {
   
   return (
     <View style={{ flex: 1, position: 'relative' }}>
-      <Header title={chat.title || 'Not Found'} svgUrl={chat.svgUrl} onBack={() => props.navigation.navigate('Home')} />
+      <Header title={chat?.title || 'Not Found'} svgUrl={chat?.svgUrl} onBack={() => props.navigation.navigate('Home')} />
       <View style={{flexDirection: 'column', flexGrow: 1, justifyContent: 'space-between', alignContent: 'space-between' }}>
         <ScrollView style={{ height: 0 }} ref={scrollRef}>
-          {chat.messages?.length > 0 &&
+          {chat?.messages &&
             <View>
               {chat.messages.map((message, index) => {
                 return <ChatItem 
