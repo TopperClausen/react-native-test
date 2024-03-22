@@ -1,8 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import { ChatDocument, ChatUserData } from './chat.types';
 
-const _ = require('lodash');
-
 export const getChatCollection = async () => {
   const snapshot = await firestore().collection('chat').get()
   return snapshot.docs.map(doc => { 
@@ -16,7 +14,7 @@ export const getChatDocument = async (doc: string) => {
 }
 
 export const subscribe = async (doc: string, success: any, onError: any) => {
-  return firestore().collection('chat').doc(doc).onSnapshot(_.debounce(success, 1000), _.debounce(onError, 1000))
+  return firestore().collection('chat').doc(doc).onSnapshot(success, onError)
 }
 
 export const sendMessage = async (message: string, doc: string, user: ChatUserData) => {

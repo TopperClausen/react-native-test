@@ -56,6 +56,7 @@ const Chats = (props: { chats: ChatDocument[], navigator: any, refresh: () => vo
           <SvgUri uri={chat.svgUrl} width={ 50 } height={ 50 } />
           <View>
             <Text style={style.chatTitle} key={chat.title}> { chat.title } </Text>
+            <Text style={style.chatDescription} key={chat.description}> { chat.description } </Text>
           </View>
         </Pressable>
       ))}
@@ -80,6 +81,9 @@ const style = StyleSheet.create({
   },
   chatTitle: {
     fontSize: 16
+  },
+  chatDescription: {
+    fontSize: 12
   }
 })
 

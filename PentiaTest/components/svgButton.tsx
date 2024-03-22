@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, View } from "react-native"
 import { SvgUri } from "react-native-svg"
 
 interface Props {
+  // The svg component will always be of <import svg from 'path-to-svg-file'> 
   svgComponent: any
   onPress: any
 }

@@ -10,7 +10,7 @@ interface Props {
 const Input = (props: Props) => {
   return (
     <TextInput 
-    value={props.value}
+      value={props.value}
       onChangeText={text => props.onChangeText(text)}
       placeholder={props.placeholder}
       style={{ ...style.input, width: props.width}}

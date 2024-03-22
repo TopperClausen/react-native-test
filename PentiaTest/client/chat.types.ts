@@ -1,6 +1,7 @@
 export interface ChatDocument {
   id: string,
   title: string,
+  description: string,
   svgUrl: string,
   messages: Message[]
 }

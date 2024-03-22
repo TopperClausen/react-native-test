@@ -3,14 +3,15 @@ import Header from "../components/header";
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ParamListBase, RouteProp } from '@react-navigation/native';
 import { getChatDocument, sendMessage, subscribe } from "../client/chat.client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Input from "../components/input";
 import SvgButton from "../components/svgButton";
-import Send from "../assets/img/send.svg";
+import Send from "../assets/img/send.svg"; // This is not an error, theres a package which handles this
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import ChatItem from "../components/chatItem";
 import { ChatDocument } from "../client/chat.types";
+import { createBackgroundListener, requestPermission } from "../client/push.client";
 
 interface RouteProps {
   chatTitle: string
@@ -24,13 +25,25 @@ interface Props {
 const ChatScreen = (props: Props) => {
   const { chatTitle } = props.route.params as any;
   const state = useSelector((state: RootState) => state);
-  const [chat, setChat] = useState<ChatDocument | null>(null);
+  const [_chat, _setChat] = useState<ChatDocument | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   const scrollRef = useRef<ScrollView>(null);
 
+  // useMemo is used to prevent re-rendering of the chat subscription if there are no changes
+  const chat = useMemo(() => {
+    return _chat;
+  }, [_chat]);
+
+  useEffect(() => {
+    // Background listener will be created when the component mounts and therefor only once
+    // the listener will automatically be removed when the component unmounts
+    createBackgroundListener();
+  })
+
   useEffect(() => {
     scrolltoButtom();
+    requestPermission();
   }, [chat])
 
   const scrolltoButtom = () => {
@@ -38,11 +51,7 @@ const ChatScreen = (props: Props) => {
   }
 
   const onUpdate = (data: any) => {
-    if (chat === null && data?._data !== undefined) {
-    }
-    if ((chat?.messages?.length || 0) != data._data.messages.length) {
-      setChat(data._data);
-    }
+    _setChat(data._data);
   }
   
   subscribe(chatTitle, onUpdate, () => {});

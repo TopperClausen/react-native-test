@@ -4,12 +4,14 @@ import { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import { useDispatch } from "react-redux";
 import { setSession } from "../store/session.store";
 import { NavigationProp, ParamListBase } from "@react-navigation/native";
+import { useState } from "react";
 
 interface Props {
   navigation: any
 }
 
 const LoginScreen = (props: Props) => {
+  const [error, setError] = useState<string | null>(null);
   const dispatch = useDispatch();
 
   const handleGoogleLogin = (credentials: FirebaseAuthTypes.UserCredential) => {
@@ -20,7 +22,8 @@ const LoginScreen = (props: Props) => {
   return (
     <View style={style.container}>
       <Text style={style.text}>Login</Text>
-      <GoogleLogin onSuccess={credentials => handleGoogleLogin(credentials)} />
+      <Text>{error}</Text>
+      <GoogleLogin onSuccess={credentials => handleGoogleLogin(credentials)} onError={error => setError(error)} />
     </View>
   );
 };
