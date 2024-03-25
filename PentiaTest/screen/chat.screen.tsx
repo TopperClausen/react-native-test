@@ -56,12 +56,13 @@ const ChatScreen = (props: Props) => {
   const submitChat = async () => {
     setMessage('');
     setLoading(true);
-    sendMessage(message, chatTitle, {
+    await sendMessage(message, chatTitle, {
       uid: state.session.uid,
       displayName: state.session.displayName,
       imageUrl: state.session.photoURL
     });
     setLoading(false);
+    scrolltoButtom();
   }
 
   const [message, setMessage] = useState<string>("");
