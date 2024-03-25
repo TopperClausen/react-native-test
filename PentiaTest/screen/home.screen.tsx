@@ -13,15 +13,27 @@ interface Props {
 
 const HomeScreen = (props: Props) => {
   const state = useSelector((state: any) => state);
-  const [chats, setChats] = useState<ChatDocument[]>([
-                                      {} as ChatDocument,
-                                      {} as ChatDocument,
-                                      {} as ChatDocument,
-                                    ]);
+  const [chats, setChats] = useState<ChatDocument[]>([]);
 
   const loadChats = async () => {
-    const result = await getChatCollection();
-    setChats(result as ChatDocument[])
+    const result = await getChatCollection() as ChatDocument[];
+    const sortedResult = result.sort((a, b) => {
+      if(!a.messages) return -1;
+      if(!b.messages) return 1 ;
+
+      const aLatestMessage = a.messages[a.messages.length - 1];
+      const bLatestMessage = b.messages[b.messages.length - 1];
+
+      if (aLatestMessage.sentAt > bLatestMessage.sentAt) {
+        return -1;
+      } else if (aLatestMessage.sentAt < bLatestMessage.sentAt) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+
+    setChats(sortedResult);
   }
   loadChats();
 

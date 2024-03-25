@@ -59,7 +59,7 @@ const ChatScreen = (props: Props) => {
   const submitChat = async () => {
     setMessage('');
     setLoading(true);
-    await sendMessage(message, chatTitle, {
+    sendMessage(message, chatTitle, {
       uid: state.session.uid,
       displayName: state.session.displayName,
       imageUrl: state.session.photoURL

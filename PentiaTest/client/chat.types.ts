@@ -1,3 +1,14 @@
+export interface Notification {
+  notifications: ChatNotification[]
+}
+
+export interface ChatNotification {
+  userId: string,
+  title: string,
+  body: string,
+  seenAt: Date | null
+}
+
 export interface ChatDocument {
   id: string,
   title: string,

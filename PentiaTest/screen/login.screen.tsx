@@ -3,7 +3,6 @@ import GoogleLogin from "../components/googleLogin";
 import { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import { useDispatch } from "react-redux";
 import { setSession } from "../store/session.store";
-import { NavigationProp, ParamListBase } from "@react-navigation/native";
 import { useState } from "react";
 
 interface Props {
