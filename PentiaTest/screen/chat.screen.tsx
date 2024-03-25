@@ -31,7 +31,7 @@ const ChatScreen = (props: Props) => {
   const scrollRef = useRef<ScrollView>(null);
 
   // useMemo is used to prevent re-rendering of the chat subscription if there are no changes
-  const chat = useMemo(() => {
+  const chat : ChatDocument | null = useMemo(() => {
     return _chat;
   }, [_chat]);
 
@@ -39,12 +39,9 @@ const ChatScreen = (props: Props) => {
     // Background listener will be created when the component mounts and therefor only once
     // the listener will automatically be removed when the component unmounts
     createBackgroundListener();
-  })
-
-  useEffect(() => {
-    scrolltoButtom();
     requestPermission();
-  }, [chat])
+    scrolltoButtom();
+  }, [])
 
   const scrolltoButtom = () => {
     scrollRef.current?.scrollToEnd({ animated: false });
@@ -53,7 +50,7 @@ const ChatScreen = (props: Props) => {
   const onUpdate = (data: any) => {
     _setChat(data._data);
   }
-  
+
   subscribe(chatTitle, onUpdate, () => {});
 
   const submitChat = async () => {
