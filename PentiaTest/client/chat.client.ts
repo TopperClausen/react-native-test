@@ -41,7 +41,6 @@ export const userNotificationSeen = async (userId: string) => {
 export const sendMessage = async (message: string, doc: string, user: ChatUserData) => {
   const data = await getChatDocument(doc);
   if (data === undefined) throw new Error('Document not found');
-  console.log(data)
 
   data.messages.push({
     message,

@@ -28,7 +28,7 @@ const GoogleLogin = (props: Props) => {
             errrorMessage = 'Sign in required';
           default: {
             errrorMessage = 'Unknown error';
-            console.log(errrorMessage);
+            console.log(error);
           }
 
           props.onError(errrorMessage);
