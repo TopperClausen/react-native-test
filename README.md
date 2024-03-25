@@ -15,3 +15,5 @@ npx react-native run-< ios | android >
 
 ### Push notifications: push notification are currently disables all though they work. The way it's build is slowing the app down.
 ### Chat becomes slow after message sent, this is due to a lot of callbacks are being added to the que while handling firebase sent message.
+### Facebook login: This is not something that just can be done, as it requires approval
+
